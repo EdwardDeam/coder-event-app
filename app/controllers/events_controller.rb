@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create,:edit,:update,:destroy]
-  before_action :find_event, only: [:show,:edit,:update, :destroy]
+  before_action :find_event, only: [:edit,:update, :destroy]
   before_action :authorise_user!, only: [:update, :edit, :destroy]
 
   def index
@@ -8,6 +8,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @event = Event.includes(attendances: [:user]).find(params[:id])
   end
 
   def new
