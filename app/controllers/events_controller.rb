@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create,:edit,:update,:destroy]
+  before_action :authorise_user!, only: [:update, :edit, :destroy]
   before_action :find_event, only: [:show,:edit,:update, :destroy]
 
   def index
@@ -47,5 +49,9 @@ class EventsController < ApplicationController
 
   def find_event
     @event = Event.find(params[:id])
+  end
+
+  def authorise_user!
+    
   end
 end
