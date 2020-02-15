@@ -1,6 +1,7 @@
 <h1>All Events</h1>
 
 <% if user_signed_in? %>
+  <%= link_to 'Dashboard', dashboard_index_path %>
   <%= link_to 'Create an Event', new_event_path %>
 <% end %>
 
